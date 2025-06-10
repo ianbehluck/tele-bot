@@ -1,12 +1,12 @@
 const { Telegraf } = require('telegraf');
-const TelegramBot = require('node-telegram-bot-api');
+// const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
 
 console.log('---BOT_TOKEN---> ')
 console.log(process.env.BOT_TOKEN)
 
 // Create a bot that uses 'polling' to fetch new updates
-const node_bot = new TelegramBot(process.env.BOT_TOKEN, {polling: true});
+// const node_bot = new TelegramBot(process.env.BOT_TOKEN, {polling: true});
 
 // 获取环境变量中的BOT_TOKEN
 // const bot = new Telegraf(process.env.BOT_TOKEN);
