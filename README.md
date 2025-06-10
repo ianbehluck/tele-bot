@@ -15,7 +15,7 @@
 
 你可以使用以下按钮一键部署该`Telegram`机器人到 [Vercel](https://vercel.com)：
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/Shadownc/tel-getID-bot)
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/zy1367948142/tele-bot)
 
 ## 环境变量
 
