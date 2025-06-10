@@ -9,6 +9,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.telegram.setMyCommands([
     { command: 'getme', description: '获取你的用户ID' },
     { command: 'getgroupid', description: '获取群组ID（群组内使用）' },
+    { command: 'create', description: '创建信息' },
     { command: 'help', description: '获取帮助信息' }
 ]).then(() => {
     console.log('命令菜单设置成功');
