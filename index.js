@@ -31,11 +31,13 @@ const helpMessage = `
 
 // 处理 /start 指令
 bot.start((ctx) => {
+    console.log('---start---->')
     ctx.reply(helpMessage, { parse_mode: 'Markdown' });
 });
 
 // 处理 /help 指令
 bot.help((ctx) => {
+    console.log('---help---->')
     ctx.reply(helpMessage, { parse_mode: 'Markdown' });
 });
 
@@ -53,12 +55,15 @@ bot.on('message', async (ctx) => {
 
     // 处理 /getme 指令
     if (messageText === '/getme') {
+        console.log('---getme--返回值-->')
+        console.log(userId)
         ctx.reply(`👤 **你的用户ID:** ${userId}`, { parse_mode: 'Markdown' });
         return;
     }
 
     // 处理 /getgroupid 指令
     if (messageText === '/getgroupid') {
+        console.log('---getgroupid--返回值-->')
         if (chatType === 'group' || chatType === 'supergroup') {
             ctx.reply(`📌 **群组ID:** ${chatId}`, { parse_mode: 'Markdown' });
         } else {
