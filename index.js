@@ -1,22 +1,14 @@
 const { Telegraf } = require('telegraf');
-// const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
-
-console.log('---BOT_TOKEN---> ')
-console.log(process.env.BOT_TOKEN)
-
-// Create a bot that uses 'polling' to fetch new updates
-// const node_bot = new TelegramBot(process.env.BOT_TOKEN, {polling: true});
-
 // 获取环境变量中的BOT_TOKEN
-// const bot = new Telegraf(process.env.BOT_TOKEN);
-const telegrafbot = new Telegraf(process.env.BOT_TOKEN);
+console.log('----token------>')
+console.log(process.env.BOT_TOKEN)
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // 设置命令菜单
-telegrafbot.telegram.setMyCommands([
+bot.telegram.setMyCommands([
     { command: 'getme', description: '获取你的用户ID' },
     { command: 'getgroupid', description: '获取群组ID（群组内使用）' },
-    { command: 'create', description: '创建账号' },
     { command: 'help', description: '获取帮助信息' }
 ]).then(() => {
     console.log('命令菜单设置成功');
@@ -38,17 +30,17 @@ const helpMessage = `
 `;
 
 // 处理 /start 指令
-telegrafbot.start((ctx) => {
+bot.start((ctx) => {
     ctx.reply(helpMessage, { parse_mode: 'Markdown' });
 });
 
 // 处理 /help 指令
-telegrafbot.help((ctx) => {
+bot.help((ctx) => {
     ctx.reply(helpMessage, { parse_mode: 'Markdown' });
 });
 
 // 处理 /getme 和 /getgroupid 指令
-telegrafbot.on('message', async (ctx) => {
+bot.on('message', async (ctx) => {
     console.log('收到消息：', ctx.message);
 
     // 获取用户 ID 和聊天 ID
@@ -80,7 +72,7 @@ telegrafbot.on('message', async (ctx) => {
 module.exports = async (req, res) => {
     try {
         // 处理来自 Telegram 的更新
-        await telegrafbot.handleUpdate(req.body);
+        await bot.handleUpdate(req.body);
         res.status(200).send('OK');
     } catch (error) {
         console.error('处理更新时出错:', error);
