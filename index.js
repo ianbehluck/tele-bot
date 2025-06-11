@@ -1,8 +1,9 @@
 import Telegram from "node-telegram-bot-api";
+import {BOT_TOKEN} from "./variable/telegram.js";
+// import {BOT_TOKEN} from "./variable/.env";
 
-const token = "7998836073:AAE6UCmlFtq-M8HR8V1gvnzig3U1Cuf0iiM";
+const bot = new Telegram(BOT_TOKEN , {polling:true ,});
 
-const bot = new Telegram(token , {polling:true ,});
 /*//设置机器人命令菜单
 bot.setMyCommands([
     { command: 'getme', description: '获取你的用户ID' },
