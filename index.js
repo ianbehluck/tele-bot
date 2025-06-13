@@ -77,8 +77,8 @@ bot.on('message', (msg) => {
     }
 
 });
-
-//处理Webhook请求 
+/*
+  //处理Webhook请求 
   module.exports = async (req, res) => { 
     try { 
       //处理来自Telegram的更新 
@@ -89,3 +89,4 @@ bot.on('message', (msg) => {
       res.status(500).send('内部服务器错误');
     } 
   }；
+*/
