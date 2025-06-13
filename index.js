@@ -78,4 +78,14 @@ bot.on('message', (msg) => {
 
 });
 
-// 处理 /start 指令
+//处理Webhook请求 
+  module.exports = async (req, res) => { 
+    try { 
+      //处理来自Telegram的更新 
+      await bot.handleUpdate(req.body); 
+      res.status(200).send('OK');
+    } catch (error) { 
+      console.error('处理更新时出错:'， error)
+      res.status(500).send('内部服务器错误') 
+    } 
+  }；
