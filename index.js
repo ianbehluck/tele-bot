@@ -85,7 +85,7 @@ bot.on('message', (msg) => {
       await bot.handleUpdate(req.body); 
       res.status(200).send('OK');
     } catch (error) { 
-      console.error('处理更新时出错:'， error)
-      res.status(500).send('内部服务器错误') 
+      console.error('处理更新时出错:'， error);
+      res.status(500).send('内部服务器错误');
     } 
   }；
