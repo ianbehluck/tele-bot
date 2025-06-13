@@ -51,7 +51,7 @@ bot.on('message', (msg) => {
     // 处理 /getme 指令
     if (messageText === '/getme') {
         console.log("---getme--返回值-->" ,userId)
-        bot.sendMessage(chatId, '你的用户ID： ${userId} ' );
+        bot.sendMessage(chatId, `你的用户ID：${userId}`);
     }
     else if (messageText === '/create') {
         bot.sendMessage(chatId, "create" );
