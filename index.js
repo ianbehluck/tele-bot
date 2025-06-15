@@ -1,4 +1,4 @@
- import Telegram from "node-telegram-bot-api";
+// import Telegram from "node-telegram-bot-api";
 // import {BOT_TOKEN} from "./variable/telegram.js";
 // import {BOT_TOKEN} from "./variable/.env";
 
