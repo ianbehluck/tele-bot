@@ -3,8 +3,9 @@
 // import {BOT_TOKEN} from "./variable/.env";
 
 const BOT_TOKEN = "7998836073:AAE6UCmlFtq-M8HR8V1gvnzig3U1Cuf0iiM";
+const TelegramBot = require('node-telegram-bot-api');
 const bot = new Telegram(BOT_TOKEN , {polling:true ,});
-/*
+
 //设置机器人命令菜单
 bot.setMyCommands([
     { command: 'getme', description: '获取你的用户ID' },
@@ -19,8 +20,29 @@ bot.setMyCommands([
 }).catch((error) => {
     console.error('设置命令菜单时出错:', error);
 });
-*/
 
+/*  
+//msg 數據內容
+{
+  message_id: 258,
+  from: {
+    id: 7248682602,
+    is_bot: false,
+    first_name: 'BELLER',
+    last_name: 'Hellnd',
+    language_code: 'zh-hans'
+  },
+  chat: {
+    id: 7248682602,
+    first_name: 'BELLER',
+    last_name: 'Hellnd',
+    type: 'private'
+  },
+  date: 1749978913,
+  text: '/getme',
+  entities: [ { offset: 0, length: 6, type: 'bot_command' } ]
+}
+*/
 // Matches "/echo [whatever]"
 bot.onText(/\/echo (.+)/, (msg, match) => {
     // 'msg' is the received Message from Telegram
@@ -46,6 +68,57 @@ bot.onText(/\/sendpic/, (msg) => {
   bot.sendPhoto(msg.chat.id,"https://www.somesite.com/image.jpg" );
 });
 
+bot.onText('/start', async (msg) => {
+    const welcomeMessage = 'Welcome to the Hamster Key Generator Bot!';
+    const keyboardOptions = {
+        reply_markup: {
+            keyboard: [
+                ['🔄 getME', '🔄 getType'],
+                ['Name']
+            ],
+            resize_keyboard: true
+        }
+    };
+    bot.sendMessage(msg.chat.id, welcomeMessage, keyboardOptions);
+});
+ 
+bot.onText('/create', async (msg) => {
+    // 获取用户 ID 和聊天 ID
+    bot.sendMessage(msg.chat.id, "create");
+});
+
+ bot.onText('🔄 getME', async (msg) => {
+    // 获取用户 ID 和聊天 ID
+    const chatId = msg.chat.id;
+    const userId = msg.from.id;
+    const chatType = msg.chat.type;
+    bot.sendMessage(msg.chat.id, `用戶ID： ${userId}`);
+});
+
+ bot.onText('🔄 getType', async (msg) => {
+    // 获取用户 ID 和聊天 ID
+    const chatId = msg.chat.id;
+    const userId = msg.from.id;
+    const chatType = msg.chat.type;
+    bot.sendMessage(msg.chat.id, `用戶類型： ${chatType}`);
+});
+
+bot.onText('Name', async (msg) => {
+    // 获取用户 ID 和聊天 ID
+    const chatId = msg.chat.id;
+    const userId = msg.from.id;
+    const chatType = msg.chat.type;
+    const firsNname = msg.chat.first_name;
+    const lastName = msg.chat.last_name;
+    bot.sendMessage(msg.chat.id, `用戶名字： ${lastName} ${firsNname} `);
+});
+
+ bot.onText('/help', async (msg) => {
+    const welcomeMessage = 'Welcome to the Hamster Key Generator Bot!';
+    
+    bot.sendMessage(msg.chat.id, "help");
+});
+ 
 // Listen for any kind of message. There are different kinds of
 // messages.
 bot.on('message', (msg) => {
