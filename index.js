@@ -78,21 +78,3 @@ bot.on('message', (msg) => {
 
 }); 
 
-//处理Webhook请求 
-export const config = {
-    maxDuration: 60,
-};
-
-export default async function handler (req, res) { 
-  try { 
-    //处理来自Telegram的更新 
-    console.log("---async--req---->" ,req)
-      console.log("---async--res---->" ,res)
-    // await bot.handleUpdate(req.body); 
-    res.status(200).send('OK');
- } catch (error) { 
-    console.error('处理更新时出错:'， error);
-    res.status(500).send('内部服务器错误');
- } 
-}；
-
