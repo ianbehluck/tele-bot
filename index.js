@@ -5,7 +5,7 @@
 const BOT_TOKEN = "7998836073:AAE6UCmlFtq-M8HR8V1gvnzig3U1Cuf0iiM";
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new Telegram(BOT_TOKEN , {polling:true ,});
-
+/*
 //设置机器人命令菜单
 bot.setMyCommands([
     { command: 'getme', description: '获取你的用户ID' },
@@ -20,7 +20,7 @@ bot.setMyCommands([
 }).catch((error) => {
     console.error('设置命令菜单时出错:', error);
 });
-
+*/
 /*  
 //msg 數據內容
 {
