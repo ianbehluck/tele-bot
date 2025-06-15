@@ -33,6 +33,19 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
     bot.sendMessage(chatId, resp);
 });
 
+//Keyboard
+bot.onText(/\/start/, (msg) => {
+  bot.sendMessage(msg.chat.id, "Welcome", {
+  "reply_markup": {
+    "keyboard": [["Sample text", "Second sample"],   ["Keyboard"], ["I'm robot"]]
+    }
+});
+
+//設置機器人頭像
+bot.onText(/\/sendpic/, (msg) => {
+  bot.sendPhoto(msg.chat.id,"https://www.somesite.com/image.jpg" );
+});
+
 // Listen for any kind of message. There are different kinds of
 // messages.
 bot.on('message', (msg) => {
