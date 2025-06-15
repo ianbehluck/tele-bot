@@ -79,11 +79,15 @@ bot.on('message', (msg) => {
 }); 
 
 //处理Webhook请求 
-module.exports = async (req, res) => { 
+export const config = {
+    maxDuration: 60,
+};
+
+export default async function handler (req, res) { 
   try { 
     //处理来自Telegram的更新 
     console.log("---async--req---->" ,req)
-      console.log("---async--res---->" ,req)
+      console.log("---async--res---->" ,res)
     // await bot.handleUpdate(req.body); 
     res.status(200).send('OK');
  } catch (error) { 
