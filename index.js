@@ -28,18 +28,17 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
     // of the message
     const chatId = msg.chat.id;
     const resp = match[1]; // the captured "whatever"
-    console.log('---------resp-----------' , resp);
+    console.log('-----onText----resp-----------' , resp);
     // send back the matched "whatever" to the chat
     bot.sendMessage(chatId, resp);
 });
 
-/*
 // Listen for any kind of message. There are different kinds of
 // messages.
 bot.on('message', (msg) => {
-    console.log("-----------msg-----------------");
+    console.log("--------on---msg-----------------");
     console.log(msg);
-    console.log("-----------msg-----------------");
+    console.log("--------on---msg-----------------");
 
     // 获取用户 ID 和聊天 ID
     const chatId = msg.chat.id;
@@ -77,68 +76,19 @@ bot.on('message', (msg) => {
         bot.sendMessage(chatId, "help" );
     }
 
-}); */
+}); 
 
-export default async function handler(req, res) {
-    console.log("---req---->" ,req)
-    console.log("---req.method---->" ,req.method)
-    console.log("---chatId---->" ,req.body.message.chat.id)
-    console.log("---chatId---->" , req.body.message.text)
-    console.log("---userId---->" ,req.body.message.from.id)
-    
-    console.log("---req.method---->" ,req.method)
-    if (req.method == "POST") {
-       // 获取用户 ID 和聊天 ID
-    const chatId = req.body.message.chat.id;
-    const text = req.body.message.text;
-    const userId = req.body.message.from.id;
+//处理Webhook请求 
+module.exports = async (req, res) => { 
+  try { 
+    //处理来自Telegram的更新 
+    console.log("---async--req---->" ,req)
+      console.log("---async--res---->" ,req)
+    // await bot.handleUpdate(req.body); 
+    res.status(200).send('OK');
+ } catch (error) { 
+    console.error('处理更新时出错:'， error);
+    res.status(500).send('内部服务器错误');
+ } 
+}；
 
-    // 获取消息中的命令（去掉可能的 @botname 后缀）
-    const messageText = msg.text ? msg.text.split('@')[0] : '';
-
-    // 处理 /getme 指令
-    if (messageText === '/getme') {
-        console.log("---getme--返回值-->" ,userId)
-        bot.sendMessage(chatId, `你的用户ID：${userId}`);
-    }
-    else if (messageText === '/create') {
-        bot.sendMessage(chatId, "create" );
-    }
-    else if (messageText === '/bind') {
-        bot.sendMessage(chatId, "bind" );
-    }
-    else if (messageText === '/unbind') {
-        bot.sendMessage(chatId, "unbind" );
-    }
-    else if (messageText === '/getbalance') {
-        bot.sendMessage(chatId, "getbalance" );
-    }
-    else if (messageText === '/getgroupid') {
-        if (chatType === 'group' || chatType === 'supergroup') {
-            bot.sendMessage(chatId , `📌 **群组ID:** ${chatId}`);
-        } else {
-            bot.sendMessage(chatId ,'⚠️ 请将机器人邀请进群组后再调用 /getgroupid 指令。');
-        }
-    }
-    else if (messageText === '/help') {
-        bot.sendMessage(chatId, "help" );
-    }
-        res.status(200).send("OK")
-    } else {
-        res.setHeader('Allow', ['POST']);
-        res.status(500).send('Method Not Allowed');
-    }
-}
-/*
-  //处理Webhook请求 
-  module.exports = async (req, res) => { 
-    try { 
-      //处理来自Telegram的更新 
-      await bot.handleUpdate(req.body); 
-      res.status(200).send('OK');
-    } catch (error) { 
-      console.error('处理更新时出错:'， error);
-      res.status(500).send('内部服务器错误');
-    } 
-  }；
-*/
